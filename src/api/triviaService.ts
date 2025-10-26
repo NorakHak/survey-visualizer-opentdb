@@ -5,11 +5,15 @@ const BASE_URL = "https://opentdb.com"
 export const triviaService = {
 
     async getCategories(): Promise<TriviaCategory[]> {
+
         const response = await fetch(`${BASE_URL}/api_category.php`);
+
         if (!response.ok) {
             throw new Error('Failed to fetch categories');
         }
+
         const data = await response.json();
+
         return data.trivia_categories;
     },
 

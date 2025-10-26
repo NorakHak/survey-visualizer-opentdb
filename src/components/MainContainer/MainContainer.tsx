@@ -2,28 +2,35 @@ import React from "react";
 import styles from "./MainContainer.module.css"
 import LeftMenu from "../LeftMenu/LeftMenu";
 import Content from "../Content/Content";
-import Switch from "../../ui/Switch/Switch";
+import Loader from "../../ui/Loader/Loader";
+import { useAppContext } from "../../context/useAppContext";
+import Header from "../Header/Header";
 
 export default function MainContainer() {
 
-    const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+    const context = useAppContext()
 
-    React.useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-    }, [theme]);
 
     return (
-        <main className={styles.mainContainerWrapper}>
-            <div className={styles.switchContainer}>
-                <Switch
-                    checked={theme === 'dark'}
-                    onChange={(val) => setTheme(val ? 'dark' : 'light')}
-                />
-            </div>
-            <div className={styles.mainContainer}>
-                <LeftMenu />
-                <Content />
+        <main className={styles.main}>
+            <div className={styles.container}>
+
+                <Header />
+
+                <div className={styles.contentContainer}>
+                    {context.isCategoriesLoadingActive ? (
+                        <Loader />
+                    ) : (
+                        <>
+                            <LeftMenu />
+                            <Content />
+                        </>
+                    )}
+
+                </div>
+
             </div>
         </main>
-    )
+    );
+
 }

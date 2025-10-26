@@ -1,31 +1,30 @@
-.mainContainerWrapper {
-    position: relative;
+.main {
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 16px;
+    height: 100vh;
+    padding: 10px;
     background-color: var(--wrapper-bg);
+    color: var(--text-primary);
+    overflow: hidden;
 }
 
-
-.mainContainer {
-    width: 100%;
+.container {
     height: 100%;
+    width: 100%;
     max-width: 1200px;
-    padding: 16px;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
     gap: 5px;
+}
+
+.contentContainer {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     background-color: var(--container-bg);
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.switchContainer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    overflow: hidden;
 }
