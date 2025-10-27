@@ -1,5 +1,3 @@
-import React from 'react'
-
 import styles from "./DifficultyChart.module.css"
 import { useAppContext } from '../../context/useAppContext'
 import { Cell, Pie, PieChart } from 'recharts';
@@ -13,12 +11,22 @@ export default function DifficultyChart() {
     const difficultyData = ['easy', 'medium', 'hard'].map(level => ({
         name: level.charAt(0).toUpperCase() + level.slice(1),
         value: context.questions.filter(q => q.difficulty === level).length,
-    }));
+    })).filter(item => item.value > 0);
 
     return (
         <div className={styles.container}>
 
-            <h2>Difficulty Distribution</h2>
+            <div>
+                <h2>Difficulty Distribution</h2>
+                <div>
+                    <b>Category: </b>
+                    <span>{context.selectedCategory?.name}</span>
+                </div>
+                <div>
+                    <b>Number of Questions: </b>
+                    <span>{context.questions?.length}</span>
+                </div>
+            </div>
 
             <div className={styles.chartContainer}>
                 <PieChart width={500} height={500}>

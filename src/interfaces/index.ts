@@ -11,3 +11,10 @@ export interface TriviaQuestion {
     correct_answer: string;
     incorrect_answers: string[];
 }
+
+export interface CategoryStats {
+    id: number;
+    name: string;
+    questionCount: number;
+    color: string;
+}

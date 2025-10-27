@@ -1,8 +1,9 @@
-import React from 'react'
 import styles from "./Content.module.css"
 import { useAppContext } from '../../context/useAppContext'
 import Loader from '../../ui/Loader/Loader'
 import DifficultyChart from '../DifficultyChart/DifficultyChart'
+import NoQuestionsMessage from "../NoQuestionsMessage/NoQuestionsMessage"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 export default function Content() {
 
@@ -10,11 +11,19 @@ export default function Content() {
 
     function contentRenderer() {
 
-        if (context.isQuestionsLoadingActive) {
-            return <Loader />
-        }
+        switch (true) {
+            case context.isQuestionsLoadingActive:
+                return <Loader />;
 
-        return <DifficultyChart />
+            case context.error:
+                return <ErrorMessage isCategoriesLoadFailed={false} />
+
+            case context.questions && context.questions.length === 0:
+                return <NoQuestionsMessage />;
+
+            default:
+                return <DifficultyChart />;
+        }
 
     }
 
