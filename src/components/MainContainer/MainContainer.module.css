@@ -1,6 +1,7 @@
 .main {
     width: 100%;
     height: 100vh;
+    min-width: 375px;
     padding: 10px;
     background-color: var(--wrapper-bg);
     color: var(--text-primary);
@@ -27,4 +28,12 @@
     border: 1px solid var(--border-color);
     background-color: var(--container-bg);
     overflow: hidden;
+}
+
+@media (max-width: 775px) {
+
+    .contentContainer {
+        flex-direction: column;
+    }
+
 }

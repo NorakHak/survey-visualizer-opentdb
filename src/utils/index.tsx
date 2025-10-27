@@ -43,4 +43,5 @@ export function getRandomColor(): string {
     const lightness = 45 + Math.floor(Math.random() * 10);
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
 }

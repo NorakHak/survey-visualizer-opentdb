@@ -1,7 +1,8 @@
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { useAppContext } from "../../context/useAppContext";
-import styles from "./CategoryStatsChart.module.css";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { renderCustomizedLabel } from "../../utils";
+
+import styles from "./CategoryStatsChart.module.css";
 
 export default function CategoryStatsChart() {
 
@@ -16,7 +17,53 @@ export default function CategoryStatsChart() {
         color: cat.color
     })).filter(item => item.value > 0)
 
+    function noDataViewRenderer() {
+
+        if (data.length !== 0)
+            return
+
+        return <div className={styles.noDataContainer}>
+            ℹ️ You haven’t selected any categories yet. Pick at least one to generate the chart.
+        </div>
+
+    }
+
+    function chartTooltipRenderer() {
+
+        if (data.length < 10)
+            return
+
+        return <Tooltip formatter={(value: number, name: string) => [`${value.toFixed(0)}%`, name]} />
+
+    }
+
+    function chartRenderer() {
+
+        if (data.length === 0)
+            return
+
+        return <div className={styles.chart}>
+            <PieChart width={500} height={500}>
+                <Pie
+                    data={data}
+                    dataKey="value"
+                    nameKey="name"
+                    label={data.length >= 10 ? false : renderCustomizedLabel}
+                    labelLine={false}>
+                    {data.map((entry) => (
+                        <Cell key={`cell-${entry.name}`} fill={entry.color} />
+                    ))}
+                </Pie>
+                {chartTooltipRenderer()}
+            </PieChart>
+        </div>
+
+    }
+
     function categoryStatsListRenderer() {
+
+        if (data.length === 0)
+            return
 
         return <div className={styles.listContainer}>
             <ul className={styles.list}>
@@ -40,26 +87,9 @@ export default function CategoryStatsChart() {
     return (
         <div className={styles.container}>
             <h3>Question distribution by category</h3>
-            <div className={styles.chart}>
-                <PieChart width={500} height={500}>
-                    <Pie
-                        data={data}
-                        dataKey="value"
-                        nameKey="name"
-                        label={data.length > 10 ? false : renderCustomizedLabel}
-                        labelLine={false}>
-                        {data.map((entry) => (
-                            <Cell key={`cell-${entry.name}`} fill={entry.color} />
-                        ))}
-                    </Pie>
-                    {data.length >= 10
-                        &&
-                        <Tooltip
-                            formatter={(value: number, name: string) => [`${value.toFixed(0)}%`, name]}
-                        />}
-                </PieChart>
-            </div>
 
+            {noDataViewRenderer()}
+            {chartRenderer()}
             {categoryStatsListRenderer()}
 
         </div>

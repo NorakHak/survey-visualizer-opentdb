@@ -1,13 +1,8 @@
-import React from 'react'
 import styles from './Switch.module.css';
-
 interface switchPropsI {
-
     checked?: boolean;
     onChange?: (checked: boolean) => void;
-
 }
-
 
 export default function Switch(props: switchPropsI) {
 

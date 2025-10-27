@@ -1,12 +1,14 @@
-import styles from "./DifficultyChart.module.css"
 import { useAppContext } from '../../context/useAppContext'
 import { Cell, Pie, PieChart } from 'recharts';
 import { renderCustomizedLabel } from '../../utils';
 import { DIFFICULTY_COLORS } from '../../constants';
 
+import styles from "./DifficultyChart.module.css"
+
 export default function DifficultyChart() {
 
-    const context = useAppContext()
+    const context = useAppContext();
+    if (!context) return null;
 
     const difficultyData = ['easy', 'medium', 'hard'].map(level => ({
         name: level.charAt(0).toUpperCase() + level.slice(1),

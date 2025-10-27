@@ -1,13 +1,15 @@
-import styles from "./Content.module.css"
 import { useAppContext } from '../../context/useAppContext'
 import Loader from '../../ui/Loader/Loader'
 import DifficultyChart from '../DifficultyChart/DifficultyChart'
 import NoQuestionsMessage from "../NoQuestionsMessage/NoQuestionsMessage"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
+import styles from "./Content.module.css"
+
 export default function Content() {
 
-    const context = useAppContext()
+    const context = useAppContext();
+    if (!context) return null;
 
     function contentRenderer() {
 

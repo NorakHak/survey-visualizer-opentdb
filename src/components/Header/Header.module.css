@@ -4,3 +4,29 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.headerLeftButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 775px) {
+
+    .headerLeft {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}

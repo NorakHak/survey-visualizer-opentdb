@@ -1,11 +1,12 @@
-import styles from "./MainContainer.module.css"
+import { useAppContext } from "../../context/useAppContext";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import Content from "../Content/Content";
 import Loader from "../../ui/Loader/Loader";
-import { useAppContext } from "../../context/useAppContext";
 import Header from "../Header/Header";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import CategoryStatsChart from "../CategoryStatsChart/CategoryStatsChart";
+
+import styles from "./MainContainer.module.css"
 
 export default function MainContainer() {
 

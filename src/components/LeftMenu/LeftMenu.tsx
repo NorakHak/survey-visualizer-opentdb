@@ -1,28 +1,26 @@
-import styles from "./LeftMenu.module.css"
 import { useAppContext } from '../../context/useAppContext'
 import type { TriviaCategory } from '../../interfaces'
+
+import styles from "./LeftMenu.module.css"
 
 export default function LeftMenu() {
 
     const context = useAppContext()
 
     function onCategoryClick(category: TriviaCategory) {
+        if (context.isQuestionsLoadingActive) return;
 
-        if (!context.isQuestionsLoadingActive) {
+        context.setError(false);
 
-            context.setError(false)
 
-            if (context.error || context.questions.length === 0) {
-
-                context.retryFetchQuestions()
-
-            } else {
-
-                context.setSelectedCategory(category);
-
-            }
-
+        if (context.selectedCategoryId === category.id) {
+            context.retryFetchQuestions();
+            return;
         }
+
+
+        context.setSelectedCategory(category);
+        context.setSelectedCategoryId(category.id);
 
     }
 

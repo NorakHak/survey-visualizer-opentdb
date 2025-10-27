@@ -1,14 +1,15 @@
 import { useAppContext } from "../../context/useAppContext"
 import Button from "../../ui/Button/Button"
-import styles from "./ErrorMessage.module.css"
 
+import styles from "./ErrorMessage.module.css"
 interface ErrorMessageProps {
     isCategoriesLoadFailed?: boolean
 }
 
 export default function ErrorMessage({ isCategoriesLoadFailed = true }: ErrorMessageProps) {
 
-    const context = useAppContext()
+    const context = useAppContext();
+    if (!context) return null;
 
     function onRetryButtonClick() {
 

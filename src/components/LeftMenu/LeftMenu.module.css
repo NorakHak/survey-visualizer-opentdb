@@ -44,3 +44,35 @@
 .listItem:hover {
     background-color: var(--list-item-hover);
 }
+
+@media (max-width: 775px) {
+
+    .container {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .list {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        overflow-x: auto;
+        padding: 5px 10px;
+        padding-bottom: 10px;
+        flex: none;
+        white-space: nowrap;
+    }
+
+    .listItem {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+}

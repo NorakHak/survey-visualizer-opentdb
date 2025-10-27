@@ -13,3 +13,10 @@
 .container:active {
     transform: scale(.95);
 }
+
+@media (max-width: 400px) {
+    .container {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+}

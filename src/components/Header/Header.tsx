@@ -1,8 +1,8 @@
-import React from 'react'
-
-import styles from "./Header.module.css"
 import Switch from '../../ui/Switch/Switch'
 import { useAppContext } from '../../context/useAppContext'
+import Button from "../../ui/Button/Button"
+
+import styles from "./Header.module.css"
 
 export default function Header() {
 
@@ -13,6 +13,17 @@ export default function Header() {
 
             <div className={styles.headerLeft}>
                 <h1>Trivia Dashboard</h1>
+                <div className={styles.headerLeftButtons}>
+                    <Button onClick={() => {
+                        context.setShowOverallChart(prev => !prev)
+                    }}>
+                        View {context.showOverallChart ? "Categories" : "Stats"}
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            context.resetCache()
+                        }}>Reset Questions</Button>
+                </div>
             </div>
             <div className={styles.headerRight}>
                 <Switch
