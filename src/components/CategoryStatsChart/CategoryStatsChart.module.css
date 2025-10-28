@@ -16,6 +16,7 @@
 }
 
 .chart {
+    min-height: 0;
     flex: 1;
     display: flex;
     align-items: center;
@@ -24,22 +25,39 @@
 
 .listContainer {
     width: 100%;
-    overflow: scroll;
+    height: 170px;
+    padding-right: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
 }
 
 .list {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    min-height: 0;
 }
 
 .listItem {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
+.listItem:first-child {
+    margin-top: auto;
+}
+
 .color {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
+}
+
+.name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

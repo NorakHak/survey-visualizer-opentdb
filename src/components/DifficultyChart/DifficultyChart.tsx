@@ -1,5 +1,5 @@
 import { useAppContext } from '../../context/useAppContext'
-import { Cell, Pie, PieChart } from 'recharts';
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { renderCustomizedLabel } from '../../utils';
 import { DIFFICULTY_COLORS } from '../../constants';
 
@@ -31,24 +31,26 @@ export default function DifficultyChart() {
             </div>
 
             <div className={styles.chartContainer}>
-                <PieChart width={500} height={500}>
-                    <Pie
-                        data={difficultyData}
-                        dataKey="value"
-                        nameKey="name"
-                        label={renderCustomizedLabel}
-                        labelLine={false}>
-                        {difficultyData.map((entry, index) => (
-                            <Cell key={`cell-${entry.name}`} fill={DIFFICULTY_COLORS[index % DIFFICULTY_COLORS.length]} />
-                        ))}
-                    </Pie>
-                </PieChart>
+                <ResponsiveContainer >
+                    <PieChart >
+                        <Pie
+                            data={difficultyData}
+                            dataKey="value"
+                            nameKey="name"
+                            label={renderCustomizedLabel}
+                            labelLine={false}>
+                            {difficultyData.map((entry, index) => (
+                                <Cell key={`cell-${entry.name}`} fill={DIFFICULTY_COLORS[index % DIFFICULTY_COLORS.length]} />
+                            ))}
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
             </div>
 
             <div className={styles.footer}>
-                <span>Easy - Green</span>
-                <span>Medium - Yellow</span>
-                <span>Hard - Red</span>
+                <span>Easy - <span style={{ color: DIFFICULTY_COLORS[0] }}>Green</span></span>
+                <span>Medium - <span style={{ color: DIFFICULTY_COLORS[1] }}>Yellow</span></span>
+                <span>Hard - <span style={{ color: DIFFICULTY_COLORS[2] }}>Red</span></span>
             </div>
 
         </div>

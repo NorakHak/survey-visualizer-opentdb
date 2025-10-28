@@ -13,7 +13,7 @@ export default function LeftMenu() {
         context.setError(false);
 
 
-        if (context.selectedCategoryId === category.id) {
+        if ((context.selectedCategoryId === category.id) && context.error) {
             context.retryFetchQuestions();
             return;
         }

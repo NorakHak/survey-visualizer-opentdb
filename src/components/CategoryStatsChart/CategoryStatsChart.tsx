@@ -1,5 +1,5 @@
 import { useAppContext } from "../../context/useAppContext";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { renderCustomizedLabel } from "../../utils";
 
 import styles from "./CategoryStatsChart.module.css";
@@ -43,19 +43,21 @@ export default function CategoryStatsChart() {
             return
 
         return <div className={styles.chart}>
-            <PieChart width={500} height={500}>
-                <Pie
-                    data={data}
-                    dataKey="value"
-                    nameKey="name"
-                    label={data.length >= 10 ? false : renderCustomizedLabel}
-                    labelLine={false}>
-                    {data.map((entry) => (
-                        <Cell key={`cell-${entry.name}`} fill={entry.color} />
-                    ))}
-                </Pie>
-                {chartTooltipRenderer()}
-            </PieChart>
+            <ResponsiveContainer>
+                <PieChart width={500} height={500}>
+                    <Pie
+                        data={data}
+                        dataKey="value"
+                        nameKey="name"
+                        label={data.length >= 10 ? false : renderCustomizedLabel}
+                        labelLine={false}>
+                        {data.map((entry) => (
+                            <Cell key={`cell-${entry.name}`} fill={entry.color} />
+                        ))}
+                    </Pie>
+                    {chartTooltipRenderer()}
+                </PieChart>
+            </ResponsiveContainer>
         </div>
 
     }
@@ -75,7 +77,7 @@ export default function CategoryStatsChart() {
                             className={styles.color}
                             style={{ backgroundColor: c.color }}
                         />
-                        <span>{c.name}: </span>
+                        <span className={styles.name}>{c.name}: </span>
                         <span>{`${c.value.toFixed(0)}%`}</span>
                     </li>
                 })}
