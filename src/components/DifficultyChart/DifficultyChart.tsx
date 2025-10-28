@@ -46,9 +46,9 @@ export default function DifficultyChart() {
             </div>
 
             <div className={styles.footer}>
-                <span>Easy - Green</span>
-                <span>Medium - Yellow</span>
-                <span>Hard - Red</span>
+                <span>Easy - <span style={{ color: DIFFICULTY_COLORS[0] }}>Green</span></span>
+                <span>Medium - <span style={{ color: DIFFICULTY_COLORS[1] }}>Yellow</span></span>
+                <span>Hard - <span style={{ color: DIFFICULTY_COLORS[2] }}>Red</span></span>
             </div>
 
         </div>
