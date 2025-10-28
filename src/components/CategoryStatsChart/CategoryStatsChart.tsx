@@ -75,7 +75,7 @@ export default function CategoryStatsChart() {
                             className={styles.color}
                             style={{ backgroundColor: c.color }}
                         />
-                        <span>{c.name}: </span>
+                        <span className={styles.name}>{c.name}: </span>
                         <span>{`${c.value.toFixed(0)}%`}</span>
                     </li>
                 })}
