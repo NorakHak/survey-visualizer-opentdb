@@ -1,0 +1,20 @@
+import styles from "./Button.module.css"
+
+interface ButtonProps {
+    onClick?: () => void;
+    children?: React.ReactNode;
+}
+
+const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
+    return (
+        <button
+            className={styles.container}
+            onClick={onClick}>
+
+            {children}
+
+        </button>
+    );
+};
+
+export default Button;
